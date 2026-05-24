@@ -2,7 +2,7 @@ package com.example.biblioteca.service;
 
 import com.example.biblioteca.repository.AutorRepository;
 import com.example.biblioteca.dto.AutorResponseDTO;
-import com.example.biblioteca.dto.AutorResquestDTO;
+import com.example.biblioteca.dto.AutorRequestDTO;
 import com.example.biblioteca.model.Autor;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,7 +30,7 @@ public class AutorService {
     }
 
     @Operation(summary = "Metodo para cadastrar os autores")
-    public AutorResponseDTO cadastrarAutor(AutorResquestDTO dto){
+    public AutorResponseDTO cadastrarAutor(AutorRequestDTO dto){
         Autor autor = new Autor();
 
         autor.setNome(dto.nome());
@@ -58,7 +58,7 @@ public class AutorService {
     }
 
     @Operation(summary = "Metodo para atulizar autores")
-    public AutorResponseDTO atualizarAutores(Long idAutor ,AutorResquestDTO dto){
+    public AutorResponseDTO atualizarAutores(Long idAutor , AutorRequestDTO dto){
         Autor autor = autorRepository.findById(idAutor)
                 .orElseThrow(() -> new RuntimeException("Autor nao encontrado " + idAutor));
 

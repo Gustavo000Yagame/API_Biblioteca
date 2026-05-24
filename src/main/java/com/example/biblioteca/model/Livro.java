@@ -19,6 +19,8 @@ public class Livro {
 
     private String titulo;
 
+
+    @Column(unique = true, nullable = false)
     private String isbn;
 
     private Integer anoPublicacao;

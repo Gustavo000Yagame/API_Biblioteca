@@ -2,7 +2,7 @@ package com.example.biblioteca.controller;
 
 import com.example.biblioteca.service.AutorService;
 import com.example.biblioteca.dto.AutorResponseDTO;
-import com.example.biblioteca.dto.AutorResquestDTO;
+import com.example.biblioteca.dto.AutorRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -29,7 +29,7 @@ public class AutorController {
     @Operation(summary = "POST para cadastro de autores")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AutorResponseDTO cadastrarAutor(@Valid @RequestBody AutorResquestDTO dto){
+    public AutorResponseDTO cadastrarAutor(@Valid @RequestBody AutorRequestDTO dto){
         return autorService.cadastrarAutor(dto);
     }
 
@@ -41,7 +41,7 @@ public class AutorController {
 
     @Operation(summary = "PUT para atualizar os nossos Amigos autores", description = "esqueci de mencinar mas escolhemos qual queremos att atravez do id")
     @PutMapping("/atualizar/{idAutor}")
-    public AutorResponseDTO atualizarAutores(@PathVariable Long idAutor, @Valid @RequestBody AutorResquestDTO dto){
+    public AutorResponseDTO atualizarAutores(@PathVariable Long idAutor, @Valid @RequestBody AutorRequestDTO dto){
         return autorService.atualizarAutores(idAutor, dto);
     }
 
