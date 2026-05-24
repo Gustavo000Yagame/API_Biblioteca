@@ -53,7 +53,29 @@ public class AutorService {
     @Operation(summary = "Metodo que busca os autores por id")
     public AutorResponseDTO buscarAutorPorId(Long idAutor){
         Autor autor = autorRepository.findById(idAutor)
-                .orElseThrow(() -> new RuntimeException("Autor nao encontrado"));
+                .orElseThrow(() -> new RuntimeException("Autor nao encontrado " + idAutor));
         return converteParaResponse(autor);
+    }
+
+    @Operation(summary = "Metodo para atulizar autores")
+    public AutorResponseDTO atualizarAutores(Long idAutor ,AutorResquestDTO dto){
+        Autor autor = autorRepository.findById(idAutor)
+                .orElseThrow(() -> new RuntimeException("Autor nao encontrado " + idAutor));
+
+        autor.setNome(dto.nome());
+        autor.setNacionalidade(dto.nacionalidade());
+        autor.setTelefone(dto.telefone());
+        autor.setEmail(dto.email());
+
+        Autor novoAutor = autorRepository.save(autor);
+        return converteParaResponse(novoAutor);
+    }
+
+    @Operation(summary = "Metodo para deletar autores")
+    public void deletarAutor(Long idAutor){
+        Autor autor = autorRepository.findById(idAutor)
+                .orElseThrow(() -> new RuntimeException("Nao foi possivel deletar o autor " + idAutor));
+
+        autorRepository.delete(autor);
     }
 }

@@ -32,4 +32,23 @@ public class AutorController {
     public AutorResponseDTO cadastrarAutor(@Valid @RequestBody AutorResquestDTO dto){
         return autorService.cadastrarAutor(dto);
     }
+
+    @Operation(summary = "GET com filtro {idAutor} para buscar autores expecificos")
+    @GetMapping("/buscar/{idAutor}")
+    public AutorResponseDTO buscarAutorPorId(@PathVariable Long idAutor){
+        return autorService.buscarAutorPorId(idAutor);
+    }
+
+    @Operation(summary = "PUT para atualizar os nossos Amigos autores", description = "esqueci de mencinar mas escolhemos qual queremos att atravez do id")
+    @PutMapping("/atualizar/{idAutor}")
+    public AutorResponseDTO atualizarAutores(@PathVariable Long idAutor, @Valid @RequestBody AutorResquestDTO dto){
+        return autorService.atualizarAutores(idAutor, dto);
+    }
+
+    @Operation(summary = "Delete para Matar os autores da humanidade")
+    @DeleteMapping("/deletar/{idAutor}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarAutor(@PathVariable Long idAutor){
+        autorService.deletarAutor(idAutor);
+    }
 }
