@@ -1,11 +1,10 @@
 package com.example.biblioteca.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
-public record LivroResquestDTO (
+public record LivroRequestDTO(
 
         @NotBlank(message = "O titulo e obrigatorio")
         String titulo,
@@ -17,6 +16,6 @@ public record LivroResquestDTO (
         @Max(value = 2026, message = "Meu patrao se e do futuro? chama noisa ai pra ir junto mano brow")
         Integer anoPublicacao,
 
-        Long autorId
+        Long    autorId
 
 ){}

@@ -1,7 +1,7 @@
 package com.example.biblioteca.controller;
 
 import com.example.biblioteca.dto.LivroResponseDTO;
-import com.example.biblioteca.dto.LivroResquestDTO;
+import com.example.biblioteca.dto.LivroRequestDTO;
 import com.example.biblioteca.service.LivroService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,16 +20,28 @@ public class LivroCntroller {
 
     private final LivroService livroService;
 
-    @Operation(summary = "GET simples do para lisatr todos os livros")
+    @Operation(summary = "GET simples do para lisatar todos os livros")
     @GetMapping
     public List<LivroResponseDTO> listarTodosLivros(){
         return livroService.listarTodosLivros();
     }
 
-    @Operation
+    @Operation(summary = "POST para cadastrar Livros")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LivroResponseDTO cadastrarLivros(@Valid @RequestBody LivroResquestDTO dto){
+    public LivroResponseDTO cadastrarLivros(@Valid @RequestBody LivroRequestDTO dto){
     return livroService.cadastrarLivros(dto);
+    }
+
+    @Operation(summary = "GET{id} para buscar livro expecifico")
+    @GetMapping("/buscar/{idLivro}")
+    public LivroResponseDTO listarLivroPorId(@PathVariable Long idLivro){
+        return livroService.listarLivroPorId(idLivro);
+    }
+
+    @Operation(summary = "PUT{id} para atualizar livro expecifico")
+    @PutMapping("/atualizar/{idLivro}")
+    public LivroResponseDTO atualizarLivros(@PathVariable Long idLivro, @Valid  @RequestBody LivroRequestDTO dto){
+        return livroService.atualizarLivro(idLivro, dto);
     }
 }
